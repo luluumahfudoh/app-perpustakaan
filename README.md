@@ -6,5 +6,5 @@ Aplikasi berbasis web untuk mengelola data buku, anggota, dan transaksi peminjam
 
 1. Clone repository ini:
    ```bash
-   git clone [https://github.com/luluuatl/app-perpustakaan.git](https://github.com/luluuatl/app-perpustakaan.git)
+   git clone https://github.com/luluumahfudoh/app-perpustakaan.git
    cd app-perpustakaan
