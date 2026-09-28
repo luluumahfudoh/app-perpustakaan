@@ -37,16 +37,21 @@
         <tbody>
             @forelse ($books as $book)
                 <tr>
-                    <td>{{ $book['id'] }}</td>
-                    <td>{{ $book['judul'] }}</td>
-                    <td>{{ $book['penulis'] }}</td>
-                    <td>{{ $book['penerbit'] }}</td>
-                    <td>{{ $book['tahun_terbit'] }}</td>
-                    <td>{{ $book['kategori'] }}</td>
-                    <td>{{ $book['stok'] }}</td>
+                    <td>{{ $book->id }}</td>
+                    <td>{{ $book->judul }}</td>
+                    <td>{{ $book->penulis }}</td>
+                    <td>{{ $book->penerbit }}</td>
+                    <td>{{ $book->tahun_terbit }}</td>
+                    <td>{{ $book->category->nama_kategori ?? $book->category_id }}</td>
+                    <td>{{ $book->stok }}</td>
                     <td>
-                        <a href="{{ route('books.show', $book['id']) }}">Detail</a> |
-                        <a href="{{ route('books.edit', $book['id']) }}">Edit</a>
+                        <a href="{{ route('books.show', $book->id) }}">Detail</a> |
+                        <a href="{{ route('books.edit', $book->id) }}">Edit</a> |
+                        <form style="display:inline" action="{{ route('books.destroy', $book->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Yakin hapus buku ini?')">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @empty
@@ -56,5 +61,9 @@
             @endforelse
         </tbody>
     </table>
+
+    <div style="margin-top: 16px;">
+        {{ $books->links() }}
+    </div>
 </body>
 </html>
