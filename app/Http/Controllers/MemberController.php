@@ -30,7 +30,7 @@ class MemberController extends Controller
 
     public function show($id)
     {
-        $member = Member::findOrFail($id);
+        $member = Member::with(['loans.loanItems.book', 'loans.user'])->findOrFail($id);        return view('members.show', compact('member'));
         return view('members.show', compact('member'));
     }
 
